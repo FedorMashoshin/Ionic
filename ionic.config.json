@@ -1,0 +1,7 @@
+{
+  "name": "real-ap",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
