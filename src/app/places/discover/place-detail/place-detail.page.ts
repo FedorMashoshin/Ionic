@@ -30,11 +30,13 @@ export class PlaceDetailPage implements OnInit {
   }
   
   onBookPlace(){
-    // this.navCtrl.navigateBack('/places/tabs/discover')
+    // modal window creating
     this.modalCtrl.create({
       component: CreateBookingComponent,
+      // data transform to our modal
       componentProps: {selectedPlace: this.place}
     })
+    // modal window opening
     .then(modalEl => {
       modalEl.present();
       return modalEl.onDidDismiss();

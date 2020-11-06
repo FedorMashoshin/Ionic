@@ -17,7 +17,7 @@ export class CreateBookingComponent implements OnInit {
     this.modalCtrl.dismiss(null, 'cancel');
   }
 
-  onBooksPlace(){
+  onBooking(){
     this.modalCtrl.dismiss({message: 'Look at this message!'}, 'confirm');
   }
 }
