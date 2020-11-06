@@ -1,4 +1,4 @@
-import { Place } from './../place.mode';
+import { Place } from '../place.mode';
 import { Component, OnInit } from '@angular/core';
 import { PlacesService } from '../places.service';
 
