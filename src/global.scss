@@ -31,6 +31,10 @@ ion-toolbar{
   --color: var(--ion-color-primary-contrast);
   }
 
-  ion-menu-button{
+  ion-menu-button, ion-back-button{
     --color:var(--ion-color-primary-contrast);
+  }
+
+  .ion-invalid.ion-touched ion-label{
+    color: var(--ion-color-danger);
   }
