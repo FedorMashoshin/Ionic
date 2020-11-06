@@ -27,7 +27,7 @@ export class AuthPage implements OnInit {
       message:'Logging in...'
     })
     .then(loadingEl => {
-      // open our loading controoler
+      // open our loading controller
       loadingEl.present();
       setTimeout(() => {
         this.isLoading = false;
