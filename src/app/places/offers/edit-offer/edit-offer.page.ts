@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { PlacesService } from '../../places.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-offer',
@@ -11,7 +12,8 @@ import { PlacesService } from '../../places.service';
   styleUrls: ['./edit-offer.page.scss'],
 })
 export class EditOfferPage implements OnInit {
-place: Place
+place: Place;
+form: FormGroup; 
   constructor(
     private route: ActivatedRoute,
     private placesService: PlacesService,
@@ -24,8 +26,22 @@ place: Place
         this.navCtrl.navigateBack('/places/tabs/offers');
         return;
       }
-      this.place = this.placesService.getPlace(paramMap.get('placeId'))
+      this.place = this.placesService.getPlace(paramMap.get('placeId'));
+      this.form = new FormGroup({
+        // 2 params: 1-starting value, 2- what we want to change
+        title: new FormControl(this.place.title, {
+          updateOn: 'change',
+          validators: [Validators.required]
+        }),
+        description: new FormControl(this.place.descriptipon, {
+          updateOn: 'change',
+          validators: [Validators.required, Validators.maxLength(180)]
+        })
+      })
     })
   }
-
+  onEditOffer(){
+    console.log(this.form.value)
+  }
 }
+ 
