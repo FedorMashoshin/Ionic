@@ -18,13 +18,13 @@ const routes: Routes = [
   },
   {
     path: 'places',
-    loadChildren: () => import('./places/places.module').then( m => m.PlacesPageModule),
-    canLoad:[AuthGuard]
+    canLoad:[AuthGuard],
+    loadChildren: () => import('./places/places.module').then( m => m.PlacesPageModule)
   },
   {
     path: 'bookings',
-    loadChildren: () => import('./bookings/bookings.module').then( m => m.BookingsPageModule),
-    canLoad:[AuthGuard]
+    canLoad:[AuthGuard],
+    loadChildren: () => import('./bookings/bookings.module').then( m => m.BookingsPageModule)
   },
 ];
 

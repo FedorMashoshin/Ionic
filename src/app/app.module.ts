@@ -8,6 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthGuard } from './auth/auth.guard';
 
 @NgModule({
   declarations: [AppComponent],
