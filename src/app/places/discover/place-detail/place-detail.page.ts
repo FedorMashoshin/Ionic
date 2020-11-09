@@ -65,7 +65,7 @@ export class PlaceDetailPage implements OnInit {
     this.modalCtrl.create({
       component: CreateBookingComponent,
       // data transform to our modal
-      componentProps: {selectedPlace: this.place}
+      componentProps: {selectedPlace: this.place, selectedMode: mode}
     })
     // modal window opening
     .then(modalEl => {
