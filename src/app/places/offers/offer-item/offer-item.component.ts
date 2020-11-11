@@ -12,10 +12,4 @@ export class OfferItemComponent implements OnInit {
  
   ngOnInit() {
   }
-
-  testDate(){
-    return Date.now()
-  }
-
-
 }

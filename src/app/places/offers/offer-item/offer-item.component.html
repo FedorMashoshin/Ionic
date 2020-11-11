@@ -6,8 +6,8 @@
     <ion-label>
       <h2>{{ offer.title }}</h2>
       <div class="dates">
-        <p> <ion-icon color="warning" name="arrow-redo-circle-outline"></ion-icon> {{ testDate() | date}}</p>
-        <p> <ion-icon color="warning" name="arrow-undo-circle-outline"></ion-icon> {{ testDate() | date}}</p>
+        <p> <ion-icon color="warning" name="arrow-redo-circle-outline"></ion-icon> {{ offer.dateFrom | date}}</p>
+        <p> <ion-icon color="warning" name="arrow-undo-circle-outline"></ion-icon> {{ offer.dateTo| date}}</p>
       </div>
     </ion-label>
 </ion-item>
