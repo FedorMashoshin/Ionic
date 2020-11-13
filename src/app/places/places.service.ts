@@ -66,9 +66,33 @@ export class PlacesService {
       dateTo,
       this.authService.userId
       );
-      return this.places.pipe(take(1), delay(1000), tap( places => {
+      return this.places.pipe(
+        take(1), 
+        delay(1000), 
+        tap( places => {
           this._places.next(places.concat(newPlace)); 
-      })
-    );
+        })
+       );
+  }
+
+  updateOffer(placeId: string, title: string, description: string){
+    return this.places.pipe(
+      take(1),
+      delay(1000),
+      tap( places => {
+        const updatedPlacesIndex = places.findIndex( pl => pl.id === placeId );
+        const updatedPlaces = [...places];
+        const oldPlace = updatedPlaces[updatedPlacesIndex]
+        updatedPlaces[updatedPlacesIndex] = new Place(
+          oldPlace.id, 
+          title, 
+          description, 
+          oldPlace.image, 
+          oldPlace.price,
+          oldPlace.dateFrom, 
+          oldPlace.dateTo,
+          oldPlace.userId);
+          this._places.next(updatedPlaces);
+      }));
   }
 }

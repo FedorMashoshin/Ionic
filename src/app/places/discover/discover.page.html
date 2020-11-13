@@ -12,22 +12,29 @@
     <ion-segment-button value="all">All Places</ion-segment-button>
     <ion-segment-button value="bookable">Bookable Places</ion-segment-button>
   </ion-segment>
- <ion-grid>
+  <ion-grid *ngIf="relevantPlaces.length <= 0">
+    <ion-row>
+      <ion-col size-md='6' offset-md='3' class="ion-text-center">
+        <p>There are no bookable places right now, sorry about that!</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+ <ion-grid *ngIf="relevantPlaces.length > 0">
    <ion-row>
      <ion-col size-md='6' offset-md='3' class="ion-text-center">
       <ion-card>
-        <ion-img [src]="loadedPlaces[0].image"></ion-img>
+        <ion-img [src]="relevantPlaces[0].image"></ion-img>
         <ion-card-header>
-          <ion-card-subtitle color="danger">{{ loadedPlaces[0].price | currency}} / night</ion-card-subtitle>
-          <ion-card-title>{{ loadedPlaces[0].title }}</ion-card-title>
+          <ion-card-subtitle color="danger">{{ relevantPlaces[0].price | currency}} / night</ion-card-subtitle>
+          <ion-card-title>{{ relevantPlaces[0].title }}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          {{ loadedPlaces[0].descriptipon }}
+          {{ relevantPlaces[0].descriptipon }}
         </ion-card-content>
         <div> 
           <ion-button color="primary"
           fill='clear'
-          [routerLink]="['/places/tabs/discover/',loadedPlaces[0].id]"
+          [routerLink]="['/places/tabs/discover/',relevantPlaces[0].id]"
           >More info...</ion-button>
         </div>
        
@@ -38,7 +45,7 @@
      <ion-col size-md='6' offset-md='3'>
       <ion-list>
         <ion-item 
-        *ngFor="let place of loadedPlaces.slice(1)"
+        *ngFor="let place of relevantPlaces.slice(1)"
         [routerLink]="['/places/tabs/discover/', place.id]"
         >
           <ion-thumbnail slot="start">
