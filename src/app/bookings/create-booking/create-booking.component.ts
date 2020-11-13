@@ -2,7 +2,6 @@ import { ModalController } from '@ionic/angular';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Place } from 'src/app/places/place.mode';
 import { NgForm } from '@angular/forms';
-import { start } from 'repl';
 
 @Component({
   selector: 'app-create-booking',
