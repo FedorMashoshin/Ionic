@@ -16,7 +16,12 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-list>
+        <ion-spinner color="danger" *ngIf="isLoading"></ion-spinner>
+        <div *ngIf="!isLoading && offers.length <= 0">
+          <p>There are no offers here</p>
+          <ion-button color="warning" routerLink="/places/tabs/offers/new">Create new offer</ion-button>
+        </div>
+        <ion-list *ngIf="!isLoading && offers.length > 0">
           <ion-item-sliding  *ngFor="let offer of offers" #slidingItem>
             <app-offer-item [offer]='offer'></app-offer-item>
             <ion-item-options>
