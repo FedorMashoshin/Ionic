@@ -40,6 +40,7 @@ export class PlaceDetailPage implements OnInit, OnDestroy{
         this.isBookable = place.userId !==  this.authService.userId
       });
     })
+    console.log('PLACE: ', this.route.paramMap)
   }
 
   ngOnDestroy(){
