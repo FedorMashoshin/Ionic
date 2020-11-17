@@ -1,8 +1,9 @@
-import { delay, take, tap } from 'rxjs/operators';
+import { delay, take, tap, switchMap } from 'rxjs/operators';
 import { AuthService } from './../auth/auth.service';
 import { Booking } from './booking.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,10 @@ export class BookingService {
     return this._bookings.asObservable()
   }
 
-  constructor(private authService: AuthService){
+  constructor(
+    private authService: AuthService,
+    private http: HttpClient
+  ){
 
   }
 
@@ -29,6 +33,7 @@ export class BookingService {
     dateTo: Date
     )
     {
+      let generatedId: string; 
       const newBooking = new Booking(
         Math.random().toString(),
         placeId,
@@ -41,13 +46,18 @@ export class BookingService {
         dateFrom,
         dateTo
       );
-      return this.bookings.pipe(
-        take(1),
-        delay(1000),
-        tap(bookings => {
+      return this.http.post<{name: string}>(
+        `https://ionic-project-9efe5.firebaseio.com/bookings.json`,
+        {...newBooking, id: null})
+          .pipe(switchMap(res => {
+          generatedId = res.name;
+          return this.bookings
+        }),
+          take(1),
+          tap(bookings => {
+          newBooking.id = generatedId;
           this._bookings.next(bookings.concat(newBooking));
-        })
-        );
+        }))
     }
 
   cancelBooking(bookingId){
