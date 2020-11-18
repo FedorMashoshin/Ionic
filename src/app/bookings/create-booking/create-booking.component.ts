@@ -13,7 +13,7 @@ export class CreateBookingComponent implements OnInit {
   @Input() selectedMode: 'select' | 'random';
   @ViewChild('f' , { static: true }) form: NgForm;
   startDate: string;
-  endDate:string;
+  endDate: string;
 
   constructor(private modalCtrl: ModalController) { }
 
@@ -53,6 +53,8 @@ export class CreateBookingComponent implements OnInit {
   }
 
   datesValid(){
-    return this.form.value['date-to'] > this.form.value['date-from']
+    const startDate = new Date(this.form.value['date-from']);
+    const endDate = new Date(this.form.value['date-to']);
+    return endDate > startDate;
   }
 }
